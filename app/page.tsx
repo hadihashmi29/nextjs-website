@@ -14,6 +14,7 @@ export default function Home() {
   const router = useRouter()
   const { addItem, itemCount } = useCart()
   const [selectedCategory, setSelectedCategory] = useState<string>("all")
+  const [searchQuery, setSearchQuery] = useState<string>("")
 
   const handleAddToCart = (product: any, quantity = 1, size: string) => {
     const cartItem = {
@@ -40,13 +41,20 @@ export default function Home() {
     router.push("/checkout")
   }
 
+  const handleSearch = (query: string) => {
+    setSearchQuery(query)
+    setSelectedCategory("all")
+  }
+
   const filteredProducts = products.filter((product) => {
-    return selectedCategory === "all" || product.category === selectedCategory
+    const matchesCategory = selectedCategory === "all" || product.category === selectedCategory
+    const matchesSearch = searchQuery === "" || product.name.toLowerCase().includes(searchQuery.toLowerCase())
+    return matchesCategory && matchesSearch
   })
 
   return (
     <>
-      <Navbar cartCount={itemCount} />
+      <Navbar cartCount={itemCount} onSearch={handleSearch} />
       <main className="min-h-screen bg-gray-50">
         <section className="relative w-full h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] bg-white overflow-hidden">
           <Image src="/images/hero-hoodies.png" alt="Shop Banner" fill className="object-cover" priority />
@@ -70,6 +78,17 @@ export default function Home() {
 
         {/* Main Content */}
         <section id="products" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
+          {searchQuery && (
+            <div className="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <p className="text-sm md:text-base text-gray-700">
+                Showing results for: <span className="font-semibold">{searchQuery}</span>
+                <button onClick={() => setSearchQuery("")} className="ml-4 text-blue-600 hover:text-blue-800 underline">
+                  Clear search
+                </button>
+              </p>
+            </div>
+          )}
+
           <div className="mb-6 md:mb-8">
             <div className="flex gap-4 md:gap-6 border-b border-gray-200 overflow-x-auto scrollbar-hide">
               <button
@@ -106,11 +125,26 @@ export default function Home() {
           </div>
 
           {/* Products Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
-            {filteredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} onAddToCart={handleAddToCart} onBuyNow={handleBuyNow} />
-            ))}
-          </div>
+          {filteredProducts.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-lg text-gray-600 mb-4">No products found matching your search.</p>
+              <button
+                onClick={() => {
+                  setSearchQuery("")
+                  setSelectedCategory("all")
+                }}
+                className="px-6 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                View All Products
+              </button>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+              {filteredProducts.map((product) => (
+                <ProductCard key={product.id} product={product} onAddToCart={handleAddToCart} onBuyNow={handleBuyNow} />
+              ))}
+            </div>
+          )}
         </section>
       </main>
       <Footer />
