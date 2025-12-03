@@ -72,7 +72,7 @@ export const products: Product[] = [
     sizes: ["S", "M", "L", "XL"],
   },
   {
-    id: "shirt-8",
+    id: "shirt-7",
     name: "Graffiti Art Oversized T-shirt",
     category: "shirt",
     originalPrice: 2800,
@@ -82,7 +82,7 @@ export const products: Product[] = [
     sizes: ["S", "M", "L", "XL"],
   },
   {
-    id: "shirt-9",
+    id: "shirt-8",
     name: "Arctic Monkeys Oversized T-shirt",
     category: "shirt",
     originalPrice: 2800,
