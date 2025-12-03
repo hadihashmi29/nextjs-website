@@ -42,6 +42,16 @@ export const products: Product[] = [
     sizes: ["S", "M", "L", "XL"],
   },
   {
+    id: "shirt-4",
+    name: "Porsche Legacy Oversized T-shirt",
+    category: "shirt",
+    originalPrice: 2800,
+    discountedPrice: 2300,
+    image: "/images/porsche-legacy-shirt.png",
+    colors: ["#000000"],
+    sizes: ["S", "M", "L", "XL"],
+  },
+  {
     id: "shirt-5",
     name: "Sharingan Anime Oversized T-shirt",
     category: "shirt",
