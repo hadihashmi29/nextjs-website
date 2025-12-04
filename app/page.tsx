@@ -9,6 +9,7 @@ import { products } from "@/lib/products"
 import { useCart } from "@/components/cart-context"
 import Image from "next/image"
 import Link from "next/link"
+import { Truck, Shield, RefreshCw } from "lucide-react"
 
 export default function Home() {
   const router = useRouter()
@@ -55,6 +56,36 @@ export default function Home() {
   return (
     <>
       <Navbar cartCount={itemCount} onSearch={handleSearch} />
+      <div className="bg-green-600 text-white py-2.5 px-4 overflow-hidden">
+        <div className="animate-marquee whitespace-nowrap flex items-center gap-8 md:gap-12 text-sm md:text-base">
+          <div className="flex items-center gap-2 inline-flex">
+            <Truck className="w-4 h-4 md:w-5 md:h-5" />
+            <span className="font-semibold">FREE Delivery in Rawalpindi & Islamabad</span>
+          </div>
+          <div className="flex items-center gap-2 inline-flex">
+            <Shield className="w-4 h-4 md:w-5 md:h-5" />
+            <span>100% Secure Payment</span>
+          </div>
+          <div className="flex items-center gap-2 inline-flex">
+            <RefreshCw className="w-4 h-4 md:w-5 md:h-5" />
+            <span>Easy Returns</span>
+          </div>
+          {/* Duplicate for seamless loop */}
+          <div className="flex items-center gap-2 inline-flex">
+            <Truck className="w-4 h-4 md:w-5 md:h-5" />
+            <span className="font-semibold">FREE Delivery in Rawalpindi & Islamabad</span>
+          </div>
+          <div className="flex items-center gap-2 inline-flex">
+            <Shield className="w-4 h-4 md:w-5 md:h-5" />
+            <span>100% Secure Payment</span>
+          </div>
+          <div className="flex items-center gap-2 inline-flex">
+            <RefreshCw className="w-4 h-4 md:w-5 md:h-5" />
+            <span>Easy Returns</span>
+          </div>
+        </div>
+      </div>
+
       <main className="min-h-screen bg-gray-50">
         <section className="relative w-full h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] bg-white overflow-hidden">
           <Image src="/images/hero-hoodies.png" alt="Shop Banner" fill className="object-cover" priority />

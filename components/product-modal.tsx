@@ -2,7 +2,7 @@
 
 import type { Product } from "@/lib/products"
 import Image from "next/image"
-import { X, Ruler } from "lucide-react"
+import { X, Ruler, Truck } from "lucide-react"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { SizeChartModal } from "@/components/size-chart-modal"
@@ -88,6 +88,16 @@ export function ProductModal({ product, isOpen, onClose, onAddToCart, onBuyNow }
                 <p className="text-xs text-red-600 font-semibold mb-3">
                   Save PKR {(product.originalPrice - product.discountedPrice).toLocaleString()}
                 </p>
+
+                <div className="flex items-center gap-2 mb-3 bg-green-50 border border-green-200 rounded-lg px-3 py-2">
+                  <Truck className="w-4 h-4 text-green-600" />
+                  <div className="flex-1">
+                    <span className="text-xs md:text-sm text-green-700 font-semibold block">
+                      FREE Delivery in Rawalpindi & Islamabad
+                    </span>
+                    <span className="text-xs text-green-600">PKR 250 for other cities</span>
+                  </div>
+                </div>
 
                 <div className="mb-3 md:mb-4">
                   <div className="flex items-center justify-between mb-2">

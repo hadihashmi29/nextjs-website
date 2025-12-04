@@ -133,8 +133,15 @@ export default function CartPage() {
                   </div>
                   <div className="flex justify-between text-sm md:text-base">
                     <span className="text-gray-600">Shipping:</span>
-                    <span className="font-semibold text-green-600">FREE</span>
+                    <span className="font-medium text-gray-900">Calculated at checkout</span>
                   </div>
+                </div>
+
+                <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4">
+                  <p className="text-xs md:text-sm text-green-700 font-semibold mb-1">
+                    FREE Delivery in Rawalpindi & Islamabad
+                  </p>
+                  <p className="text-xs text-green-600">PKR 250 delivery charge for other cities</p>
                 </div>
 
                 <div className="flex justify-between items-center mb-4 md:mb-6 text-base md:text-lg">

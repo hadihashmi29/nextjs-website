@@ -21,6 +21,17 @@ export default function CheckoutPage() {
     paymentMethod: "nayapay",
   })
 
+  const calculateDeliveryCharge = () => {
+    const city = formData.city.toLowerCase().trim()
+    if (city === "rawalpindi" || city === "islamabad") {
+      return 0
+    }
+    return 250
+  }
+
+  const deliveryCharge = calculateDeliveryCharge()
+  const finalTotal = total + deliveryCharge
+
   const WHATSAPP_NUMBER = "923010100979"
 
   if (items.length === 0) {
@@ -52,12 +63,13 @@ export default function CheckoutPage() {
       )
       .join("%0A")
 
-    const whatsappMessage = `*New Order Received*%0A%0A*Customer Details:*%0AName: ${formData.fullName}%0AEmail: ${formData.email}%0APhone: ${formData.phone}%0AAddress: ${formData.address}%0ACity: ${formData.city}%0A%0A*Order Items:*%0A${orderItems}%0A%0A*Total Amount: PKR ${total.toLocaleString()}*%0A%0APayment Method: NayaPay (03010100979)`
+    const deliveryText = deliveryCharge === 0 ? "FREE" : `PKR ${deliveryCharge}`
+    const whatsappMessage = `*New Order Received*%0A%0A*Customer Details:*%0AName: ${formData.fullName}%0AEmail: ${formData.email}%0APhone: ${formData.phone}%0AAddress: ${formData.address}%0ACity: ${formData.city}%0A%0A*Order Items:*%0A${orderItems}%0A%0A*Subtotal: PKR ${total.toLocaleString()}*%0A*Delivery Charges: ${deliveryText}*%0A*Total Amount: PKR ${finalTotal.toLocaleString()}*%0A%0APayment Method: NayaPay (03010100979)`
 
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`, "_blank")
 
     clearCart()
-    router.push(`/order-confirmation?email=${encodeURIComponent(formData.email)}&total=${total}`)
+    router.push(`/order-confirmation?email=${encodeURIComponent(formData.email)}&total=${finalTotal}`)
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -100,7 +112,7 @@ export default function CheckoutPage() {
                       value={formData.email}
                       onChange={handleChange}
                       className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-600 text-sm md:text-base"
-                      placeholder="youremail@gmail.com"
+                      placeholder="your.email@example.com"
                     />
                   </div>
 
@@ -126,7 +138,7 @@ export default function CheckoutPage() {
                       value={formData.address}
                       onChange={handleChange}
                       className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-600 text-sm md:text-base"
-                      placeholder="Address"
+                      placeholder="123 Main Street, Apt 4B"
                     />
                   </div>
 
@@ -139,7 +151,7 @@ export default function CheckoutPage() {
                       value={formData.city}
                       onChange={handleChange}
                       className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-600 text-sm md:text-base"
-                      placeholder="City"
+                      placeholder="Karachi"
                     />
                   </div>
 
@@ -160,7 +172,7 @@ export default function CheckoutPage() {
                         <span className="font-semibold">Account Number:</span> 03010100979
                       </p>
                       <p className="text-xs md:text-sm text-gray-700">
-                        <span className="font-semibold">Account Name:</span> Hadi Mustafa Hashmi
+                        <span className="font-semibold">Account Name:</span> GenAlpha Store
                       </p>
                     </div>
 
@@ -223,14 +235,22 @@ export default function CheckoutPage() {
                     <span className="font-semibold text-black">PKR {total.toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Shipping:</span>
-                    <span className="font-semibold text-black">FREE</span>
+                    <span className="text-gray-600">Delivery:</span>
+                    <span className={`font-semibold ${deliveryCharge === 0 ? "text-green-600" : "text-black"}`}>
+                      {deliveryCharge === 0 ? "FREE" : `PKR ${deliveryCharge}`}
+                    </span>
                   </div>
+                  {formData.city && deliveryCharge === 0 && (
+                    <p className="text-xs text-green-600">Free delivery in {formData.city}</p>
+                  )}
+                  {formData.city && deliveryCharge > 0 && (
+                    <p className="text-xs text-gray-600">Delivery charge: PKR 250</p>
+                  )}
                 </div>
 
                 <div className="flex justify-between items-center text-base md:text-lg border-t pt-3 md:pt-4">
                   <span className="font-bold text-black">Total:</span>
-                  <span className="font-bold text-red-600 text-lg md:text-xl">PKR {total.toLocaleString()}</span>
+                  <span className="font-bold text-red-600 text-lg md:text-xl">PKR {finalTotal.toLocaleString()}</span>
                 </div>
               </div>
             </div>
