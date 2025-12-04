@@ -113,6 +113,11 @@ export default function Home() {
             <div className="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
               <p className="text-sm md:text-base text-gray-700">
                 Showing results for: <span className="font-semibold">{searchQuery}</span>
+                {filteredProducts.length > 0 && (
+                  <span className="block mt-2 text-gray-600">
+                    Found: {filteredProducts.map((p) => p.name).join(", ")}
+                  </span>
+                )}
                 <button onClick={() => setSearchQuery("")} className="ml-4 text-blue-600 hover:text-blue-800 underline">
                   Clear search
                 </button>

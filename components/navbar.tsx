@@ -57,9 +57,9 @@ export function Navbar({ cartCount, onSearch }: NavbarProps) {
             <Image
               src="/images/ga-logo.png"
               alt="GenAlpha"
-              width={80}
-              height={32}
-              className="object-contain w-16 md:w-20"
+              width={112}
+              height={45}
+              className="object-contain w-20 md:w-28"
             />
           </Link>
 
