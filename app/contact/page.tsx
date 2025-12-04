@@ -116,7 +116,7 @@ export default function ContactPage() {
                     <Mail className="w-6 h-6 text-black mt-1 flex-shrink-0" />
                     <div>
                       <p className="font-semibold text-black">Email</p>
-                      <p className="text-gray-600">info@stylehub.pk</p>
+                      <p className="text-gray-600">genalphawear@gmail.com</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
