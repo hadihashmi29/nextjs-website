@@ -99,19 +99,12 @@ export default function AboutPage() {
 
               <div className="lg:hidden grid grid-cols-3 gap-4">
                 <div className="bg-white rounded-xl p-4 shadow-lg border-2 border-gray-200 text-center hover:scale-110 transition-transform duration-300">
-                  <div className="text-4xl mb-1 animate-bounce">💻</div>
                   <p className="text-gray-900 font-bold text-sm">Tech</p>
                 </div>
                 <div className="bg-white rounded-xl p-4 shadow-lg border-2 border-gray-200 text-center hover:scale-110 transition-transform duration-300">
-                  <div className="text-4xl mb-1 animate-bounce" style={{ animationDelay: "0.2s" }}>
-                    👕
-                  </div>
                   <p className="text-gray-900 font-bold text-sm">Fashion</p>
                 </div>
                 <div className="bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl p-4 shadow-lg text-center hover:scale-110 transition-transform duration-300">
-                  <div className="text-4xl mb-1 animate-bounce" style={{ animationDelay: "0.4s" }}>
-                    🚀
-                  </div>
                   <p className="text-white font-bold text-sm">Dreams</p>
                 </div>
               </div>
@@ -124,7 +117,7 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-bold">
-                <span className="text-lg">👥</span>
+                <span className="text-lg hidden sm:inline">👥</span>
                 WHO WE ARE
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
@@ -134,77 +127,22 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-base text-gray-600 leading-relaxed">
                 <p>
-                  We are <strong className="text-gray-900">four Computer Science students</strong>, currently studying
-                  in our 5th semester, who decided to build something of our own rather than waiting for "the right
-                  time."
+                  We are four Computer Science students who decided to build our own clothing brand rather than waiting
+                  for the perfect moment.
                 </p>
                 <p>
-                  What started as a simple idea during class discussions slowly turned into a passion — and today it
-                  stands as our own clothing startup, <strong className="text-gray-900">proudly Pakistani.</strong>
+                  GenAlpha is our Pakistani startup that combines tech thinking with fashion, creating premium quality
+                  designs at student-friendly prices.
                 </p>
-              </div>
-              <div className="flex flex-wrap gap-3 pt-4">
-                <span className="bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-semibold">Modern</span>
-                <span className="bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-semibold">Clean</span>
-                <span className="bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-semibold">Premium</span>
               </div>
             </div>
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-purple-100 rounded-3xl transform rotate-3"></div>
               <div className="relative bg-white border-2 border-gray-900 rounded-3xl p-8 md:p-10 shadow-xl transform -rotate-1 hover:rotate-0 transition-transform">
-                <div className="text-6xl mb-4">💡</div>
+                <div className="text-6xl mb-4 hidden sm:block">💡</div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Our Philosophy</h3>
                 <p className="text-gray-600 text-base">
-                  Creating a brand that reflects who we are and what we believe in — quality, style, and authenticity.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* How It Started Section */}
-        <section className="bg-gray-50 py-16 md:py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 bg-purple-50 text-purple-700 px-4 py-2 rounded-full text-sm font-bold mb-4">
-                <span className="text-lg">🚀</span>
-                OUR JOURNEY
-              </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">How It Started</h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                From classroom discussions to building a real business
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-12">
-              <div className="bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-blue-500 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group">
-                <div className="text-4xl mb-4 group-hover:scale-125 group-hover:rotate-12 transition-transform duration-300">
-                  💻
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">The Idea</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  We were always building digital projects, but one day we thought: "Why not build something in real
-                  life too?"
-                </p>
-              </div>
-
-              <div className="bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-purple-500 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group">
-                <div className="text-4xl mb-4 group-hover:scale-125 group-hover:rotate-12 transition-transform duration-300">
-                  👥
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">The Team</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Four friends with different skills came together - design, operations, marketing, and development.
-                </p>
-              </div>
-
-              <div className="bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-pink-500 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group">
-                <div className="text-4xl mb-4 group-hover:scale-125 group-hover:rotate-12 transition-transform duration-300">
-                  🎯
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">The Dream</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Create something people could physically wear, feel, and love — not just lines of code on a screen.
+                  Quality, style, and authenticity — creating a brand that reflects who we are.
                 </p>
               </div>
             </div>
@@ -212,224 +150,122 @@ export default function AboutPage() {
         </section>
 
         {/* About GenAlpha Brand Section */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-bold mb-6">
-                <span className="text-lg">🏢</span>
-                ABOUT GENALPHA
+        <section className="bg-gray-50 py-16 md:py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-bold mb-6">
+                  <span className="text-lg hidden sm:inline">🏢</span>
+                  ABOUT GENALPHA
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">More Than Just Clothing</h2>
+                <div className="space-y-4 text-gray-600 leading-relaxed">
+                  <p>
+                    GenAlpha is a Pakistani clothing brand delivering premium quality, modern designs, and affordable
+                    prices to students and young professionals.
+                  </p>
+                  <p>
+                    We believe clothing is a way to express yourself and feel confident. Our mission is to make premium
+                    fashion accessible to everyone.
+                  </p>
+                </div>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">More Than Just a Clothing Brand</h2>
-              <div className="space-y-4 text-gray-600 leading-relaxed">
-                <p>
-                  <strong className="text-gray-900">GenAlpha</strong> is a Pakistani clothing brand founded by four
-                  Computer Science students who wanted to merge creativity, technology, and fashion into something
-                  unique.
-                </p>
-                <p>
-                  We believe that clothing is more than just fabric — it's a way to express your personality, showcase
-                  your style, and feel confident wherever you go.
-                </p>
-                <p>
-                  Our mission is simple: deliver premium quality, modern designs, and affordable prices to students and
-                  young professionals who want to look good without breaking the bank.
-                </p>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="bg-gradient-to-br from-blue-500 to-purple-500 rounded-3xl p-8 text-white shadow-2xl transform hover:scale-105 transition-transform duration-300">
-                <div className="text-5xl mb-6">🎨</div>
-                <h3 className="text-2xl font-bold mb-4">Our Identity</h3>
-                <ul className="space-y-3 text-blue-50">
-                  <li className="flex items-start gap-3">
-                    <span className="text-xl">✓</span>
-                    <span>Student-founded Pakistani startup</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-xl">✓</span>
-                    <span>Built by tech students, made for everyone</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-xl">✓</span>
-                    <span>Modern designs with local authenticity</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-xl">✓</span>
-                    <span>Quality that matches international brands</span>
-                  </li>
-                </ul>
+              <div className="relative">
+                <div className="bg-gradient-to-br from-blue-500 to-purple-500 rounded-3xl p-8 text-white shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                  <div className="text-5xl mb-6 hidden sm:block">🎨</div>
+                  <h3 className="text-2xl font-bold mb-4">What We Stand For</h3>
+                  <ul className="space-y-3 text-blue-50">
+                    <li className="flex items-start gap-3">
+                      <span className="text-xl">✓</span>
+                      <span>Student-founded Pakistani startup</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-xl">✓</span>
+                      <span>Modern designs with local authenticity</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-xl">✓</span>
+                      <span>Quality that matches big brands</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Our Products Section */}
-        <section className="bg-gray-50 py-16 md:py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 bg-purple-50 text-purple-700 px-4 py-2 rounded-full text-sm font-bold mb-4">
-                <span className="text-lg">👕</span>
-                OUR PRODUCTS
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What We Offer</h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Carefully curated designs that blend style, comfort, and personality
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-20">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-purple-50 text-purple-700 px-4 py-2 rounded-full text-sm font-bold mb-4">
+              <span className="text-lg hidden sm:inline">👕</span>
+              OUR PRODUCTS
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What We Offer</h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-blue-500 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+              <div className="text-4xl mb-4 hidden sm:block">👕</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Oversized T-Shirts</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Premium oversized tees with unique designs. Perfect for casual wear and making a statement.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-blue-500 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                <div className="text-4xl mb-4">👕</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Oversized T-Shirts</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Premium oversized tees with unique designs featuring cars, gaming, and streetwear aesthetics. Perfect
-                  for casual wear and making a statement.
-                </p>
-              </div>
-
-              <div className="bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-purple-500 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                <div className="text-4xl mb-4">🎮</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Gaming Collection</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Inspired by popular games like GTA and gaming culture. Our designs celebrate the passion that gamers
-                  and enthusiasts share.
-                </p>
-              </div>
-
-              <div className="bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-pink-500 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                <div className="text-4xl mb-4">🚗</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Automotive Designs</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  For car lovers — featuring iconic brands like Ferrari and Porsche. High-quality prints that showcase
-                  legendary vehicles.
-                </p>
-              </div>
+            <div className="bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-purple-500 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+              <div className="text-4xl mb-4 hidden sm:block">🎮</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Gaming Collection</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Inspired by popular games like GTA. Designs that celebrate gaming culture.
+              </p>
             </div>
 
-            <div className="mt-8 bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-8 text-white">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                <div>
-                  <h3 className="text-2xl font-bold mb-2">Coming Soon</h3>
-                  <p className="text-gray-300">
-                    We're constantly working on new designs, hoodies, and exclusive drops. Stay tuned!
-                  </p>
-                </div>
-                <div className="text-5xl">🚀</div>
-              </div>
+            <div className="bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-pink-500 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+              <div className="text-4xl mb-4 hidden sm:block">🚗</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Automotive Designs</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                For car lovers featuring iconic brands like Ferrari and Porsche.
+              </p>
             </div>
           </div>
         </section>
 
         {/* Quality & Standards Section */}
-        <section className="py-16 md:py-20 bg-white">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <section className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Quality & Standards</h2>
+              <div className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-5 py-2.5 rounded-full text-sm font-bold mb-4">
+                QUALITY & STANDARDS
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-4">
+                Premium Quality, <span className="text-green-600">Affordable Prices</span>
+              </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                At GenAlpha, quality is not negotiable. Every product goes through rigorous checks to ensure you get the
-                best.
+                We believe quality clothing should be accessible to everyone, especially students.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl border border-blue-100 hover:shadow-lg transition-all duration-300">
-                <div className="text-4xl mb-4">🧵</div>
-                <h3 className="text-xl font-bold mb-3">Premium Fabrics</h3>
-                <p className="text-gray-700 leading-relaxed">
-                  We use only high-quality, breathable fabrics that are comfortable for all-day wear. Our materials are
-                  carefully selected to ensure durability and softness.
-                </p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-gray-100 hover:border-green-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                <div className="text-4xl mb-4 hidden sm:block">🧵</div>
+                <h3 className="font-black text-xl mb-3">Premium Fabric</h3>
+                <p className="text-gray-600">High-quality cotton blend for maximum comfort and durability</p>
               </div>
-
-              <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-2xl border border-purple-100 hover:shadow-lg transition-all duration-300">
-                <div className="text-4xl mb-4">🎨</div>
-                <h3 className="text-xl font-bold mb-3">Print Quality</h3>
-                <p className="text-gray-700 leading-relaxed">
-                  Our designs are printed using advanced DTG (Direct-to-Garment) technology, ensuring vibrant colors
-                  that won't fade or crack after washing.
-                </p>
+              <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-gray-100 hover:border-blue-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                <div className="text-4xl mb-4 hidden sm:block">🎨</div>
+                <h3 className="font-black text-xl mb-3">Print Quality</h3>
+                <p className="text-gray-600">Vibrant, long-lasting prints that don't fade after washing</p>
               </div>
-
-              <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-2xl border border-green-100 hover:shadow-lg transition-all duration-300">
-                <div className="text-4xl mb-4">📏</div>
-                <h3 className="text-xl font-bold mb-3">Perfect Fit</h3>
-                <p className="text-gray-700 leading-relaxed">
-                  Our oversized fits are designed to be comfortable yet stylish. Every size is tested to ensure
-                  consistency and the perfect drape.
-                </p>
+              <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-gray-100 hover:border-purple-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                <div className="text-4xl mb-4 hidden sm:block">📏</div>
+                <h3 className="font-black text-xl mb-3">Perfect Fit</h3>
+                <p className="text-gray-600">Oversized design that's trendy and comfortable for all body types</p>
               </div>
-
-              <div className="bg-gradient-to-br from-orange-50 to-yellow-50 p-8 rounded-2xl border border-orange-100 hover:shadow-lg transition-all duration-300">
-                <div className="text-4xl mb-4">✅</div>
-                <h3 className="text-xl font-bold mb-3">Quality Control</h3>
-                <p className="text-gray-700 leading-relaxed">
-                  Every piece is inspected before shipping. We check stitching, prints, and overall finish to maintain
-                  our high standards.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Our Vision Section */}
-        <section className="bg-gray-900 text-white py-20 md:py-28 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div
-            className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"
-            style={{ animationDelay: "1s" }}
-          ></div>
-
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              <div>
-                <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-5 py-2.5 rounded-full text-sm font-bold mb-6">
-                  <span className="text-lg">💡</span>
-                  OUR VISION
-                </div>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight">
-                  Building for
-                  <br />
-                  <span className="text-blue-400">Tomorrow</span>
-                </h2>
-                <div className="space-y-4 text-lg text-gray-300 leading-relaxed">
-                  <p>
-                    Our aim is simple: <strong className="text-white">Build a brand that grows with us</strong> —
-                    semester by semester, year by year.
-                  </p>
-                  <p>
-                    We want to prove that students can build real businesses, not just submit projects. We want to
-                    inspire others to take the first step.
-                  </p>
-                </div>
-              </div>
-              <div className="space-y-4">
-                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border-2 border-white/10 hover:border-white/30 hover:bg-white/10 transition-all duration-300 hover:translate-x-2">
-                  <div className="flex items-start gap-4">
-                    <div className="text-5xl">📚</div>
-                    <div>
-                      <h3 className="font-black text-xl mb-2">Learning & Growing</h3>
-                      <p className="text-gray-400">Building skills beyond the classroom</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border-2 border-white/10 hover:border-white/30 hover:bg-white/10 transition-all duration-300 hover:translate-x-2">
-                  <div className="flex items-start gap-4">
-                    <div className="text-5xl">🎯</div>
-                    <div>
-                      <h3 className="font-black text-xl mb-2">Real Impact</h3>
-                      <p className="text-gray-400">Creating something people actually use</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border-2 border-white/10 hover:border-white/30 hover:bg-white/10 transition-all duration-300 hover:translate-x-2">
-                  <div className="flex items-start gap-4">
-                    <div className="text-5xl">🚀</div>
-                    <div>
-                      <h3 className="font-black text-xl mb-2">Long-term Vision</h3>
-                      <p className="text-gray-400">Building a lasting brand identity</p>
-                    </div>
-                  </div>
-                </div>
+              <div className="bg-white p-8 rounded-2xl shadow-lg border-2 border-gray-100 hover:border-pink-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                <div className="text-4xl mb-4 hidden sm:block">✅</div>
+                <h3 className="font-black text-xl mb-3">Quality Control</h3>
+                <p className="text-gray-600">Each product is checked before shipping to ensure perfection</p>
               </div>
             </div>
           </div>

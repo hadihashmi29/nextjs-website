@@ -56,31 +56,54 @@ export default function Home() {
   return (
     <>
       <Navbar cartCount={itemCount} onSearch={handleSearch} />
-      <div className="bg-green-600 text-white py-2.5 px-4 overflow-hidden">
-        <div className="animate-marquee whitespace-nowrap flex items-center gap-8 md:gap-12 text-sm md:text-base">
+      {/* Mobile: Only FREE Delivery scrolls */}
+      <div className="md:hidden bg-green-600 text-white py-2.5 px-4 overflow-hidden">
+        <div className="animate-marquee whitespace-nowrap flex items-center gap-8 text-sm">
           <div className="flex items-center gap-2 inline-flex">
-            <Truck className="w-4 h-4 md:w-5 md:h-5" />
+            <Truck className="w-4 h-4" />
             <span className="font-semibold">FREE Delivery in Rawalpindi & Islamabad</span>
           </div>
           <div className="flex items-center gap-2 inline-flex">
-            <Shield className="w-4 h-4 md:w-5 md:h-5" />
+            <Truck className="w-4 h-4" />
+            <span className="font-semibold">FREE Delivery in Rawalpindi & Islamabad</span>
+          </div>
+          <div className="flex items-center gap-2 inline-flex">
+            <Truck className="w-4 h-4" />
+            <span className="font-semibold">FREE Delivery in Rawalpindi & Islamabad</span>
+          </div>
+          <div className="flex items-center gap-2 inline-flex">
+            <Truck className="w-4 h-4" />
+            <span className="font-semibold">FREE Delivery in Rawalpindi & Islamabad</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop: All three items scroll */}
+      <div className="hidden md:block bg-green-600 text-white py-2.5 px-4 overflow-hidden">
+        <div className="animate-marquee whitespace-nowrap flex items-center gap-12 text-base">
+          <div className="flex items-center gap-2 inline-flex">
+            <Truck className="w-5 h-5" />
+            <span className="font-semibold">FREE Delivery in Rawalpindi & Islamabad</span>
+          </div>
+          <div className="flex items-center gap-2 inline-flex">
+            <Shield className="w-5 h-5" />
             <span>100% Secure Payment</span>
           </div>
           <div className="flex items-center gap-2 inline-flex">
-            <RefreshCw className="w-4 h-4 md:w-5 md:h-5" />
+            <RefreshCw className="w-5 h-5" />
             <span>Easy Returns</span>
           </div>
           {/* Duplicate for seamless loop */}
           <div className="flex items-center gap-2 inline-flex">
-            <Truck className="w-4 h-4 md:w-5 md:h-5" />
+            <Truck className="w-5 h-5" />
             <span className="font-semibold">FREE Delivery in Rawalpindi & Islamabad</span>
           </div>
           <div className="flex items-center gap-2 inline-flex">
-            <Shield className="w-4 h-4 md:w-5 md:h-5" />
+            <Shield className="w-5 h-5" />
             <span>100% Secure Payment</span>
           </div>
           <div className="flex items-center gap-2 inline-flex">
-            <RefreshCw className="w-4 h-4 md:w-5 md:h-5" />
+            <RefreshCw className="w-5 h-5" />
             <span>Easy Returns</span>
           </div>
         </div>
