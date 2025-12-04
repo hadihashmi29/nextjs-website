@@ -1,129 +1,54 @@
 "use client"
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useSearchParams } from "next/navigation"
 import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
-import { ProductCard } from "@/components/product-card"
-import { products } from "@/lib/products"
-import { useCart } from "@/components/cart-context"
-import Image from "next/image"
+import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { CheckCircle } from "lucide-react"
 
-export default function Home() {
-  const router = useRouter()
-  const { addItem, itemCount } = useCart()
-  const [selectedCategory, setSelectedCategory] = useState<string>("all")
+// TODO: Replace with your actual NayaPay account number
+const NAYAPAY_ACCOUNT = "03XX-XXXXXXXX"
 
-  const handleAddToCart = (product: any, quantity = 1, size: string) => {
-    console.log("[v0] Home Page - handleAddToCart called")
-    console.log("[v0] Home Page - Product:", product.name)
-    console.log("[v0] Home Page - Quantity:", quantity)
-    console.log("[v0] Home Page - Size:", size, "Type:", typeof size, "Length:", size?.length)
+export default function OrderConfirmationPage() {
+  const searchParams = useSearchParams()
+  const email = searchParams.get("email") || ""
+  const total = searchParams.get("total") || "0"
 
-    const cartItem = {
-      productId: product.id,
-      name: product.name,
-      image: product.image,
-      discountedPrice: product.discountedPrice,
-      quantity: quantity,
-      size: size,
-    }
-
-    console.log("[v0] Home Page - Cart item created:", JSON.stringify(cartItem, null, 2))
-    addItem(cartItem)
-  }
-
-  const handleBuyNow = (product: any, quantity = 1, size: string) => {
-    console.log("[v0] Home Page - handleBuyNow called")
-    console.log("[v0] Home Page - Product:", product.name)
-    console.log("[v0] Home Page - Quantity:", quantity)
-    console.log("[v0] Home Page - Size:", size, "Type:", typeof size, "Length:", size?.length)
-
-    const cartItem = {
-      productId: product.id,
-      name: product.name,
-      image: product.image,
-      discountedPrice: product.discountedPrice,
-      quantity: quantity,
-      size: size,
-    }
-
-    console.log("[v0] Home Page - Cart item created:", JSON.stringify(cartItem, null, 2))
-    addItem(cartItem)
-    router.push("/checkout")
-  }
-
-  const filteredProducts = products.filter((product) => {
-    return selectedCategory === "all" || product.category === selectedCategory
-  })
+  const whatsappMessage = `Hi, I just placed an order on StyleHub. Total amount: PKR ${total}. Please confirm receipt.`
+  const whatsappLink = `https://wa.me/923001234567?text=${encodeURIComponent(whatsappMessage)}`
 
   return (
     <>
-      <Navbar cartCount={itemCount} />
-      <main className="min-h-screen bg-gray-50">
-        <section className="relative w-full h-[300px] md:h-[400px] bg-white overflow-hidden">
-          <Image src="/images/hero-hoodies.png" alt="Shop Banner" fill className="object-cover" priority />
-          <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-            <div className="text-center text-white px-4">
-              <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">Premium Collection</h1>
-              <p className="text-lg md:text-xl mb-6 drop-shadow-md">Discover Unique Designs for Every Style</p>
-              <Link
-                href="#products"
-                className="inline-block bg-white text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg"
-              >
-                Shop Now
-              </Link>
+      <Navbar cartCount={0} />
+      <main className="min-h-screen bg-gray-50 py-12">
+        <div className="max-w-2xl mx-auto px-4">
+          {/* Success Message */}
+          <div className="bg-white rounded-lg shadow-lg p-8 md:p-12 text-center">
+            <div className="flex justify-center mb-6">
+              <CheckCircle className="w-20 h-20 text-green-500" />
             </div>
-          </div>
-        </section>
 
-        {/* Main Content */}
-        <section id="products" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="mb-8">
-            <div className="flex gap-6 border-b border-gray-200">
-              <button
-                onClick={() => setSelectedCategory("all")}
-                className={`pb-4 px-2 font-medium transition-all duration-200 ${
-                  selectedCategory === "all"
-                    ? "text-gray-900 border-b-2 border-gray-900"
-                    : "text-gray-500 hover:text-gray-700"
-                }`}
-              >
-                All Products
-              </button>
-              <button
-                onClick={() => setSelectedCategory("shirt")}
-                className={`pb-4 px-2 font-medium transition-all duration-200 ${
-                  selectedCategory === "shirt"
-                    ? "text-gray-900 border-b-2 border-gray-900"
-                    : "text-gray-500 hover:text-gray-700"
-                }`}
-              >
-                Shirts
-              </button>
-              <button
-                onClick={() => setSelectedCategory("hoodie")}
-                className={`pb-4 px-2 font-medium transition-all duration-200 ${
-                  selectedCategory === "hoodie"
-                    ? "text-gray-900 border-b-2 border-gray-900"
-                    : "text-gray-500 hover:text-gray-700"
-                }`}
-              >
-                Hoodies
-              </button>
+            <h1 className="text-3xl font-bold text-amber-900 mb-4">Order Confirmed!</h1>
+
+            <div className="bg-yellow-100 border-2 border-yellow-400 rounded-lg p-6 mb-6">
+              <p className="text-lg font-bold text-gray-900 mb-2">Important: Send Payment Screenshot on WhatsApp</p>
+              <p className="text-gray-700">
+                Please send your transaction screenshot on WhatsApp to complete your order
+              </p>
             </div>
-          </div>
 
-          {/* Products Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} onAddToCart={handleAddToCart} onBuyNow={handleBuyNow} />
-            ))}
+            <p className="text-gray-600 text-lg mb-8">
+              Thank you for your order. Your order has been placed successfully. You will receive a confirmation email
+              soon at <span className="font-semibold text-amber-600">{email}</span>
+            </p>
+
+            {/* Continue Shopping */}
+            <Link href="/">
+              <Button className="bg-amber-600 hover:bg-amber-700 text-white py-3 px-8">Continue Shopping</Button>
+            </Link>
           </div>
-        </section>
+        </div>
       </main>
-      <Footer />
     </>
   )
 }
