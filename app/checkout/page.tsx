@@ -112,7 +112,7 @@ export default function CheckoutPage() {
                       value={formData.email}
                       onChange={handleChange}
                       className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-600 text-sm md:text-base"
-                      placeholder="your.email@example.com"
+                      placeholder="youremail@gmail.com"
                     />
                   </div>
 
@@ -138,7 +138,7 @@ export default function CheckoutPage() {
                       value={formData.address}
                       onChange={handleChange}
                       className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-600 text-sm md:text-base"
-                      placeholder="123 Main Street, Apt 4B"
+                      placeholder="Address"
                     />
                   </div>
 
@@ -151,7 +151,7 @@ export default function CheckoutPage() {
                       value={formData.city}
                       onChange={handleChange}
                       className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-600 text-sm md:text-base"
-                      placeholder="Karachi"
+                      placeholder="City"
                     />
                   </div>
 
@@ -172,7 +172,7 @@ export default function CheckoutPage() {
                         <span className="font-semibold">Account Number:</span> 03010100979
                       </p>
                       <p className="text-xs md:text-sm text-gray-700">
-                        <span className="font-semibold">Account Name:</span> GenAlpha Store
+                        <span className="font-semibold">Account Name:</span> Hadi Mustafa Hashmi
                       </p>
                     </div>
 
