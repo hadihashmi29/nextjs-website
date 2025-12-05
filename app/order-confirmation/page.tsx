@@ -5,12 +5,22 @@ import { Navbar } from "@/components/navbar"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { CheckCircle } from "lucide-react"
+import { useEffect } from "react"
 
 export default function OrderConfirmationPage() {
   const searchParams = useSearchParams()
   const email = searchParams.get("email") || ""
   const total = searchParams.get("total") || "0"
   const paymentMethod = searchParams.get("paymentMethod") || "nayapay"
+
+  useEffect(() => {
+    console.log("[v0] Order Confirmation - Payment Method:", paymentMethod)
+    console.log("[v0] Order Confirmation - All Search Params:", {
+      email,
+      total,
+      paymentMethod,
+    })
+  }, [paymentMethod, email, total])
 
   return (
     <>
