@@ -12,7 +12,7 @@ export default function OrderConfirmationPage() {
   const email = searchParams.get("email") || ""
   const total = searchParams.get("total") || "0"
   const paymentMethodParam = searchParams.get("paymentMethod") || "nayapay"
-  const paymentMethod = paymentMethodParam.toLowerCase() // "cod", "nayapay" etc.
+  const paymentMethod = paymentMethodParam.toLowerCase()
 
   useEffect(() => {
     console.log("[v0] Order Confirmation - Payment Method:", paymentMethod)
@@ -33,29 +33,24 @@ export default function OrderConfirmationPage() {
               <CheckCircle className="w-20 h-20 text-green-500" />
             </div>
 
-            <h1 className="text-3xl font-bold text-amber-900 mb-4">
-              Order Confirmed!
-            </h1>
+            <h1 className="text-3xl font-bold text-amber-900 mb-4">Order Confirmed!</h1>
 
-            {/* NayaPay ka special message */}
+            {/* NayaPay message */}
             {paymentMethod === "nayapay" && (
               <div className="bg-yellow-100 border-2 border-yellow-400 rounded-lg p-6 mb-6">
                 <p className="text-lg font-bold text-gray-900 mb-2">
                   Important: Send Payment Screenshot on WhatsApp
                 </p>
                 <p className="text-gray-700">
-                  Please send your transaction screenshot on WhatsApp to
-                  complete your order.
+                  Please send your transaction screenshot on WhatsApp to complete your order.
                 </p>
               </div>
             )}
 
-            {/* COD ka special message */}
+            {/* COD message */}
             {paymentMethod === "cod" && (
               <div className="bg-green-100 border-2 border-green-400 rounded-lg p-6 mb-6">
-                <p className="text-lg font-bold text-gray-900 mb-2">
-                  Cash on Delivery Selected
-                </p>
+                <p className="text-lg font-bold text-gray-900 mb-2">Cash on Delivery Selected</p>
                 <p className="text-gray-700">
                   Your order will be delivered soon. Please keep{" "}
                   <span className="font-semibold">
@@ -72,10 +67,7 @@ export default function OrderConfirmationPage() {
                 <>
                   {" "}
                   You will receive a confirmation email soon at{" "}
-                  <span className="font-semibold text-amber-600">
-                    {email}
-                  </span>
-                  .
+                  <span className="font-semibold text-amber-600">{email}</span>.
                 </>
               )}
             </p>

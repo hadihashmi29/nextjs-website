@@ -64,14 +64,27 @@ export default function CheckoutPage() {
       .join("%0A")
 
     const deliveryText = deliveryCharge === 0 ? "FREE" : `PKR ${deliveryCharge}`
-    const paymentMethodText = formData.paymentMethod === "cod" ? "Cash on Delivery (COD)" : "NayaPay (03010100979)"
+    const paymentMethodText =
+      formData.paymentMethod === "cod" ? "Cash on Delivery (COD)" : "NayaPay (03010100979)"
 
-    const whatsappMessage = `*New Order Received*%0A%0A*Customer Details:*%0AName: ${formData.fullName}%0AEmail: ${formData.email}%0APhone: ${formData.phone}%0AAddress: ${formData.address}%0ACity: ${formData.city}%0A%0A*Order Items:*%0A${orderItems}%0A%0A*Subtotal: PKR ${total.toLocaleString()}*%0A*Delivery Charges: ${deliveryText}*%0A*Total Amount: PKR ${finalTotal.toLocaleString()}*%0A%0APayment Method: ${paymentMethodText}`
+    const whatsappMessage = `*New Order Received*%0A%0A*Customer Details:*%0AName: ${
+      formData.fullName
+    }%0AEmail: ${formData.email}%0APhone: ${formData.phone}%0AAddress: ${
+      formData.address
+    }%0ACity: ${formData.city}%0A%0A*Order Items:*%0A${orderItems}%0A%0A*Subtotal: PKR ${total.toLocaleString()}*%0A*Delivery Charges: ${deliveryText}*%0A*Total Amount: PKR ${finalTotal.toLocaleString()}*%0A%0APayment Method: ${paymentMethodText}`
 
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`, "_blank")
 
     clearCart()
-    router.push(`/order-confirmation?email=${encodeURIComponent(formData.email)}&total=${finalTotal}`)
+
+    // ⬇️ YAHAN MAIN NE paymentMethod BHI URL MEIN ADD KAR DIYA HAI
+    router.push(
+      `/order-confirmation?email=${encodeURIComponent(
+        formData.email,
+      )}&total=${encodeURIComponent(finalTotal.toString())}&paymentMethod=${encodeURIComponent(
+        formData.paymentMethod,
+      )}`,
+    )
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -325,7 +338,9 @@ export default function CheckoutPage() {
 
                 <div className="flex justify-between items-center text-base md:text-lg border-t pt-3 md:pt-4">
                   <span className="font-bold text-black">Total:</span>
-                  <span className="font-bold text-red-600 text-lg md:text-xl">PKR {finalTotal.toLocaleString()}</span>
+                  <span className="font-bold text-red-600 text-lg md:text-xl">
+                    PKR {finalTotal.toLocaleString()}
+                  </span>
                 </div>
               </div>
             </div>
