@@ -64,7 +64,9 @@ export default function CheckoutPage() {
       .join("%0A")
 
     const deliveryText = deliveryCharge === 0 ? "FREE" : `PKR ${deliveryCharge}`
-    const whatsappMessage = `*New Order Received*%0A%0A*Customer Details:*%0AName: ${formData.fullName}%0AEmail: ${formData.email}%0APhone: ${formData.phone}%0AAddress: ${formData.address}%0ACity: ${formData.city}%0A%0A*Order Items:*%0A${orderItems}%0A%0A*Subtotal: PKR ${total.toLocaleString()}*%0A*Delivery Charges: ${deliveryText}*%0A*Total Amount: PKR ${finalTotal.toLocaleString()}*%0A%0APayment Method: NayaPay (03010100979)`
+    const paymentMethodText = formData.paymentMethod === "cod" ? "Cash on Delivery (COD)" : "NayaPay (03010100979)"
+
+    const whatsappMessage = `*New Order Received*%0A%0A*Customer Details:*%0AName: ${formData.fullName}%0AEmail: ${formData.email}%0APhone: ${formData.phone}%0AAddress: ${formData.address}%0ACity: ${formData.city}%0A%0A*Order Items:*%0A${orderItems}%0A%0A*Subtotal: PKR ${total.toLocaleString()}*%0A*Delivery Charges: ${deliveryText}*%0A*Total Amount: PKR ${finalTotal.toLocaleString()}*%0A%0APayment Method: ${paymentMethodText}`
 
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`, "_blank")
 
@@ -151,43 +153,116 @@ export default function CheckoutPage() {
                       value={formData.city}
                       onChange={handleChange}
                       className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-600 text-sm md:text-base"
-                      placeholder="City"
+                      placeholder="Islamabad"
                     />
                   </div>
 
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-4 md:p-6">
-                    <h3 className="text-base md:text-lg font-bold text-black mb-3">Payment Method</h3>
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 md:w-12 md:h-12 bg-green-600 rounded-lg flex items-center justify-center text-white font-bold text-lg md:text-xl">
-                        N
-                      </div>
-                      <div>
-                        <p className="font-semibold text-black text-sm md:text-base">NayaPay</p>
-                        <p className="text-xs md:text-sm text-gray-600">Mobile Payment</p>
-                      </div>
-                    </div>
+                  <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 md:p-6">
+                    <h3 className="text-base md:text-lg font-bold text-black mb-4">Payment Method</h3>
 
-                    <div className="bg-white rounded-lg p-3 md:p-4 mb-3 md:mb-4">
-                      <p className="text-xs md:text-sm text-gray-700 mb-2">
-                        <span className="font-semibold">Account Number:</span> 03010100979
-                      </p>
-                      <p className="text-xs md:text-sm text-gray-700">
-                        <span className="font-semibold">Account Name:</span> Hadi Mustafa Hashmi
-                      </p>
-                    </div>
+                    <div className="space-y-3">
+                      {/* NayaPay Option */}
+                      <label
+                        className={`flex items-start gap-3 p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                          formData.paymentMethod === "nayapay"
+                            ? "border-green-600 bg-green-50"
+                            : "border-gray-200 bg-white hover:border-gray-300"
+                        }`}
+                      >
+                        <input
+                          type="radio"
+                          name="paymentMethod"
+                          value="nayapay"
+                          checked={formData.paymentMethod === "nayapay"}
+                          onChange={handleChange}
+                          className="mt-1"
+                        />
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3 mb-2">
+                            <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">
+                              N
+                            </div>
+                            <div>
+                              <p className="font-semibold text-black text-sm md:text-base">NayaPay</p>
+                              <p className="text-xs text-gray-600">Mobile Payment</p>
+                            </div>
+                          </div>
 
-                    <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 md:p-4">
-                      <div className="flex items-start gap-2">
-                        <span className="text-xl md:text-2xl">💳</span>
-                        <div>
-                          <p className="text-xs md:text-sm font-semibold text-black mb-1">Payment Instructions:</p>
-                          <ol className="text-xs text-gray-700 space-y-1 list-decimal list-inside">
-                            <li>Transfer PKR {total.toLocaleString()} to NayaPay account above</li>
-                            <li>Click "Place Order" to send your order details via WhatsApp</li>
-                            <li>Send payment screenshot on WhatsApp to confirm order</li>
-                          </ol>
+                          {formData.paymentMethod === "nayapay" && (
+                            <div className="mt-3 space-y-3">
+                              <div className="bg-white rounded-lg p-3 border border-gray-200">
+                                <p className="text-xs md:text-sm text-gray-700 mb-2">
+                                  <span className="font-semibold">Account Number:</span> 03010100979
+                                </p>
+                                <p className="text-xs md:text-sm text-gray-700">
+                                  <span className="font-semibold">Account Name:</span> Hadi Mustafa Hashmi
+                                </p>
+                              </div>
+
+                              <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
+                                <div className="flex items-start gap-2">
+                                  <span className="text-lg">💳</span>
+                                  <div>
+                                    <p className="text-xs font-semibold text-black mb-1">Payment Instructions:</p>
+                                    <ol className="text-xs text-gray-700 space-y-1 list-decimal list-inside">
+                                      <li>Transfer PKR {finalTotal.toLocaleString()} to NayaPay account above</li>
+                                      <li>Click "Place Order" to send order details via WhatsApp</li>
+                                      <li>Send payment screenshot on WhatsApp to confirm</li>
+                                    </ol>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          )}
                         </div>
-                      </div>
+                      </label>
+
+                      {/* COD Option */}
+                      <label
+                        className={`flex items-start gap-3 p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                          formData.paymentMethod === "cod"
+                            ? "border-amber-600 bg-amber-50"
+                            : "border-gray-200 bg-white hover:border-gray-300"
+                        }`}
+                      >
+                        <input
+                          type="radio"
+                          name="paymentMethod"
+                          value="cod"
+                          checked={formData.paymentMethod === "cod"}
+                          onChange={handleChange}
+                          className="mt-1"
+                        />
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3 mb-2">
+                            <div className="w-10 h-10 bg-amber-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">
+                              💵
+                            </div>
+                            <div>
+                              <p className="font-semibold text-black text-sm md:text-base">Cash on Delivery</p>
+                              <p className="text-xs text-gray-600">Pay when you receive</p>
+                            </div>
+                          </div>
+
+                          {formData.paymentMethod === "cod" && (
+                            <div className="mt-3">
+                              <div className="bg-white border border-amber-200 rounded-lg p-3">
+                                <div className="flex items-start gap-2">
+                                  <span className="text-lg">📦</span>
+                                  <div>
+                                    <p className="text-xs font-semibold text-black mb-1">COD Instructions:</p>
+                                    <ul className="text-xs text-gray-700 space-y-1 list-disc list-inside">
+                                      <li>Pay PKR {finalTotal.toLocaleString()} in cash when order arrives</li>
+                                      <li>Please keep exact amount ready</li>
+                                      <li>Inspect product before payment</li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </label>
                     </div>
                   </div>
                 </div>
