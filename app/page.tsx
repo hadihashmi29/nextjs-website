@@ -5,11 +5,12 @@ import { useRouter } from "next/navigation"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { ProductCard } from "@/components/product-card"
-import { products } from "@/lib/products.1"
+import { products } from "@/lib/products"
 import { useCart } from "@/components/cart-context"
 import Image from "next/image"
 import Link from "next/link"
 import { Truck, Shield, RefreshCw } from "lucide-react"
+
 
 export default function Home() {
   const router = useRouter()
