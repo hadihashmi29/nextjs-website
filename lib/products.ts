@@ -7,11 +7,10 @@ export interface Product {
   image: string
   colors: string[]
   sizes: string[]
-  soldOut?: boolean // Added soldOut property
+  soldOut?: boolean
 }
 
 export const products: Product[] = [
-  // Shirts
   {
     id: "shirt-1",
     name: "Vagabond Oversized T-shirt",
@@ -21,7 +20,7 @@ export const products: Product[] = [
     image: "/images/vagabond-new-shirt.png",
     colors: ["#000000"],
     sizes: ["S", "M", "L", "XL"],
-    soldOut: true, 
+    soldOut: true,
   },
   {
     id: "shirt-2",
@@ -32,7 +31,7 @@ export const products: Product[] = [
     image: "/images/ferrari-oversized-shirt.png",
     colors: ["#000000", "#DC143C"],
     sizes: ["S", "M", "L", "XL"],
-    soldOut: true, 
+    soldOut: true,
   },
   {
     id: "shirt-3",
@@ -63,6 +62,7 @@ export const products: Product[] = [
     image: "/images/sharingan-anime-shirt.png",
     colors: ["#000000", "#8B0000"],
     sizes: ["S", "M", "L", "XL"],
+    soldOut: true,
   },
   {
     id: "shirt-6",
@@ -83,7 +83,7 @@ export const products: Product[] = [
     image: "/images/graffiti-oversized-shirt.png",
     colors: ["#FFFFFF"],
     sizes: ["S", "M", "L", "XL"],
-    soldOut: true, // Marked as sold out
+    soldOut: true,
   },
   {
     id: "shirt-9",
@@ -95,7 +95,6 @@ export const products: Product[] = [
     colors: ["#000000"],
     sizes: ["S", "M", "L", "XL"],
   },
-  // Hoodies
   {
     id: "hoodie-1",
     name: "Porsche 911 GT3 RS Hoodie",
@@ -115,7 +114,7 @@ export const products: Product[] = [
     image: "/images/batman-comic-hoodie-new.png",
     colors: ["#FFFFFF"],
     sizes: ["S", "M", "L", "XL"],
-    soldOut: true, // Marked as sold out
+    soldOut: true,
   },
   {
     id: "hoodie-3",
@@ -126,7 +125,7 @@ export const products: Product[] = [
     image: "/images/toji-fushiguro-hoodie.png",
     colors: ["#000000"],
     sizes: ["S", "M", "L", "XL"],
-    soldOut: true, // Marked as sold out
+    soldOut: true,
   },
   {
     id: "hoodie-4",
@@ -137,6 +136,6 @@ export const products: Product[] = [
     image: "/images/death-note-hoodie.png",
     colors: ["#000000"],
     sizes: ["S", "M", "L", "XL"],
-    soldOut: true, // Marked as sold out
+    soldOut: true,
   },
 ]
