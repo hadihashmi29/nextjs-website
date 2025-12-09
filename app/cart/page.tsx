@@ -7,7 +7,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Trash2, Plus, Minus, ShoppingBag } from "lucide-react"
 import Image from "next/image"
-import { products } from "@/lib/products"
+import { products } from "@/lib/products.1"
 
 export default function CartPage() {
   const router = useRouter()
