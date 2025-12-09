@@ -1,5 +1,5 @@
 "use client"
-
+import { products} from "@/lib/products"
 import { Navbar } from "@/components/navbar"
 import { useCart } from "@/components/cart-context"
 import { Button } from "@/components/ui/button"
