@@ -137,6 +137,6 @@ export const products: Product[] = [
     image: "/images/death-note-hoodie.png",
     colors: ["#000000"],
     sizes: ["S", "M", "L", "XL"],
-    soldOut: true, // Marked as sold out
+    soldOut: true, 
   },
 ]
