@@ -11,7 +11,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { Truck, Shield, RefreshCw } from "lucide-react"
 
-
 export default function Home() {
   const router = useRouter()
   const { addItem, itemCount } = useCart()
