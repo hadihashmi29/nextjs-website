@@ -21,7 +21,7 @@ export const products: Product[] = [
     image: "/images/vagabond-new-shirt.png",
     colors: ["#000000"],
     sizes: ["S", "M", "L", "XL"],
-    soldOut: true, // Marked Vagabond shirt as sold out
+    soldOut: true, 
   },
   {
     id: "shirt-2",
@@ -32,7 +32,7 @@ export const products: Product[] = [
     image: "/images/ferrari-oversized-shirt.png",
     colors: ["#000000", "#DC143C"],
     sizes: ["S", "M", "L", "XL"],
-    soldOut: true, // Marked as sold out
+    soldOut: true, 
   },
   {
     id: "shirt-3",
@@ -63,7 +63,6 @@ export const products: Product[] = [
     image: "/images/sharingan-anime-shirt.png",
     colors: ["#000000", "#8B0000"],
     sizes: ["S", "M", "L", "XL"],
-    soldOut: true, // Marked as sold out
   },
   {
     id: "shirt-6",
