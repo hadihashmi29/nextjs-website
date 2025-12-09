@@ -7,6 +7,7 @@ export interface Product {
   image: string
   colors: string[]
   sizes: string[]
+  soldOut?: boolean // Added soldOut property
 }
 
 export const products: Product[] = [
@@ -20,6 +21,7 @@ export const products: Product[] = [
     image: "/images/vagabond-new-shirt.png",
     colors: ["#000000"],
     sizes: ["S", "M", "L", "XL"],
+    soldOut: true, // Marked Vagabond shirt as sold out
   },
   {
     id: "shirt-2",
@@ -30,6 +32,7 @@ export const products: Product[] = [
     image: "/images/ferrari-oversized-shirt.png",
     colors: ["#000000", "#DC143C"],
     sizes: ["S", "M", "L", "XL"],
+    soldOut: true, // Marked as sold out
   },
   {
     id: "shirt-3",
@@ -47,7 +50,7 @@ export const products: Product[] = [
     category: "shirt",
     originalPrice: 2800,
     discountedPrice: 2300,
-image: "/images/porsche-911-legacy-shirt.png",
+    image: "/images/porsche-legacy-shirt.png",
     colors: ["#000000"],
     sizes: ["S", "M", "L", "XL"],
   },
@@ -80,6 +83,7 @@ image: "/images/porsche-911-legacy-shirt.png",
     image: "/images/graffiti-oversized-shirt.png",
     colors: ["#FFFFFF"],
     sizes: ["S", "M", "L", "XL"],
+    soldOut: true, // Marked as sold out
   },
   {
     id: "shirt-9",
@@ -111,6 +115,7 @@ image: "/images/porsche-911-legacy-shirt.png",
     image: "/images/batman-comic-hoodie-new.png",
     colors: ["#FFFFFF"],
     sizes: ["S", "M", "L", "XL"],
+    soldOut: true, // Marked as sold out
   },
   {
     id: "hoodie-3",
@@ -121,6 +126,7 @@ image: "/images/porsche-911-legacy-shirt.png",
     image: "/images/toji-fushiguro-hoodie.png",
     colors: ["#000000"],
     sizes: ["S", "M", "L", "XL"],
+    soldOut: true, // Marked as sold out
   },
   {
     id: "hoodie-4",
@@ -131,5 +137,6 @@ image: "/images/porsche-911-legacy-shirt.png",
     image: "/images/death-note-hoodie.png",
     colors: ["#000000"],
     sizes: ["S", "M", "L", "XL"],
+    soldOut: true, // Marked as sold out
   },
 ]
