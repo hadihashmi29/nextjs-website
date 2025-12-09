@@ -63,6 +63,7 @@ export const products: Product[] = [
     image: "/images/sharingan-anime-shirt.png",
     colors: ["#000000", "#8B0000"],
     sizes: ["S", "M", "L", "XL"],
+    soldOut: true, // Marked as sold out
   },
   {
     id: "shirt-6",
@@ -137,6 +138,6 @@ export const products: Product[] = [
     image: "/images/death-note-hoodie.png",
     colors: ["#000000"],
     sizes: ["S", "M", "L", "XL"],
-    soldOut: true, 
+    soldOut: true, // Marked as sold out
   },
 ]
