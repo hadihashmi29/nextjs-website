@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { CartProvider } from "@/components/cart-context"
 import { IslamicHeader } from "@/components/islamic-header"
+import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
 
 const _geist = Geist({ subsets: ["latin"] })
@@ -25,12 +26,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`font-sans antialiased`}>
-        <CartProvider>
-          <IslamicHeader />
-          {children}
-        </CartProvider>
+        <ThemeProvider>
+          <CartProvider>
+            <IslamicHeader />
+            {children}
+          </CartProvider>
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

@@ -1,5 +1,5 @@
 "use client"
-import { products} from "@/lib/products"
+
 import { Navbar } from "@/components/navbar"
 import { useCart } from "@/components/cart-context"
 import { Button } from "@/components/ui/button"
@@ -7,6 +7,8 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Trash2, Plus, Minus, ShoppingBag } from "lucide-react"
 import Image from "next/image"
+import { products } from "@/lib/products"
+
 export default function CartPage() {
   const router = useRouter()
   const { items, removeItem, updateQuantity, total, clearCart, itemCount } = useCart()
