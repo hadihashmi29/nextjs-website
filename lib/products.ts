@@ -49,7 +49,7 @@ export const products: Product[] = [
     category: "shirt",
     originalPrice: 2800,
     discountedPrice: 2300,
-    image: "/images/porsche-legacy-shirt.png",
+    image: "/images/porsche-911-legacy-shirt.png",
     colors: ["#000000"],
     sizes: ["S", "M", "L", "XL"],
   },
@@ -104,6 +104,8 @@ export const products: Product[] = [
     image: "/images/porsche-gt3-hoodie.png",
     colors: ["#FFFFFF"],
     sizes: ["S", "M", "L", "XL"],
+        soldOut: true,
+
   },
   {
     id: "hoodie-2",
