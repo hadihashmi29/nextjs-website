@@ -104,8 +104,7 @@ export const products: Product[] = [
     image: "/images/porsche-gt3-hoodie.png",
     colors: ["#FFFFFF"],
     sizes: ["S", "M", "L", "XL"],
-        soldOut: true,
-
+    soldOut: true,
   },
   {
     id: "hoodie-2",
