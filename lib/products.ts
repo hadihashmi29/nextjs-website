@@ -42,6 +42,8 @@ export const products: Product[] = [
     image: "/images/san-andreas-oversized-shirt.png",
     colors: ["#000000"],
     sizes: ["S", "M", "L", "XL"],
+        soldOut: true,
+
   },
   {
     id: "shirt-4",
