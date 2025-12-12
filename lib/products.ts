@@ -93,7 +93,7 @@ export const products: Product[] = [
     category: "shirt",
     originalPrice: 2800,
     discountedPrice: 2300,
-    image: "/images/arctic-monkeys-shirt.png",
+    image: "/images/arctic-monkeys-shirt.jpeg",
     colors: ["#000000"],
     sizes: ["S", "M", "L", "XL"],
   },
