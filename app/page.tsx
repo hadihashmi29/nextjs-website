@@ -56,28 +56,49 @@ export default function Home() {
   return (
     <>
       <Navbar cartCount={itemCount} onSearch={handleSearch} />
-      {/* Mobile: Only FREE Delivery scrolls */}
-      <div className="md:hidden bg-green-600 text-white py-2.5 px-4 overflow-hidden">
-        <div className="animate-marquee whitespace-nowrap flex items-center gap-8 text-sm">
-          <div className="flex items-center gap-2 inline-flex">
-            <Truck className="w-4 h-4" />
-            <span className="font-semibold">FREE Delivery in Rawalpindi & Islamabad</span>
+      {/* Mobile: All items scroll continuously */}
+      <div className="md:hidden bg-green-600 text-white py-2.5 overflow-hidden">
+        <div className="animate-marquee whitespace-nowrap inline-flex">
+          <div className="flex items-center gap-8 text-sm">
+            <div className="flex items-center gap-2">
+              <Truck className="w-4 h-4" />
+              <span className="font-semibold">FREE Delivery in Rawalpindi & Islamabad</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Shield className="w-4 h-4" />
+              <span>100% Secure Payment</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="font-semibold"> 15% OFF on 4+ Products</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="font-semibold"> 10% OFF on 3 Products</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <RefreshCw className="w-4 h-4" />
+              <span>7-Day Exchange Policy</span>
+            </div>
           </div>
-          <div className="flex items-center gap-2 inline-flex">
-            <span className="font-semibold">🎉 15% OFF on 4+ Products</span>
-          </div>
-          <div className="flex items-center gap-2 inline-flex">
-            <span className="font-semibold">🎉 10% OFF on 3 Products</span>
-          </div>
-          <div className="flex items-center gap-2 inline-flex">
-            <Truck className="w-4 h-4" />
-            <span className="font-semibold">FREE Delivery in Rawalpindi & Islamabad</span>
-          </div>
-          <div className="flex items-center gap-2 inline-flex">
-            <span className="font-semibold">🎉 15% OFF on 4+ Products</span>
-          </div>
-          <div className="flex items-center gap-2 inline-flex">
-            <span className="font-semibold">🎉 10% OFF on 3 Products</span>
+          {/* Duplicate for seamless loop */}
+          <div className="flex items-center gap-8 text-sm ml-8">
+            <div className="flex items-center gap-2">
+              <Truck className="w-4 h-4" />
+              <span className="font-semibold">FREE Delivery in Rawalpindi & Islamabad</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Shield className="w-4 h-4" />
+              <span>100% Secure Payment</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="font-semibold"> 15% OFF on 4+ Products</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="font-semibold"> 10% OFF on 3 Products</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <RefreshCw className="w-4 h-4" />
+              <span>7-Day Exchange Policy</span>
+            </div>
           </div>
         </div>
       </div>
@@ -113,10 +134,10 @@ export default function Home() {
             <span>100% Secure Payment</span>
           </div>
           <div className="flex items-center gap-2 inline-flex">
-            <span className="font-semibold">🎉 15% OFF on 4+ Products</span>
+            <span className="font-semibold"> 15% OFF on 4+ Products</span>
           </div>
           <div className="flex items-center gap-2 inline-flex">
-            <span className="font-semibold">🎉 10% OFF on 3 Products</span>
+            <span className="font-semibold"> 10% OFF on 3 Products</span>
           </div>
           <div className="flex items-center gap-2 inline-flex">
             <RefreshCw className="w-5 h-5" />
