@@ -11,7 +11,8 @@ import Image from "next/image"
 
 export default function CheckoutPage() {
   const router = useRouter()
-  const { items, total, clearCart, itemCount } = useCart()
+  const { items, clearCart, itemCount } = useCart()
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -21,16 +22,28 @@ export default function CheckoutPage() {
     paymentMethod: "nayapay",
   })
 
+  // ✅ Same discount logic as Cart page
+  const calculateDiscount = () => {
+    const subtotal = items.reduce((sum, item) => sum + item.discountedPrice * item.quantity, 0)
+    const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0)
+
+    if (totalQuantity >= 5) return { amount: Math.round(subtotal * 0.15), percentage: 15 }
+    if (totalQuantity === 4) return { amount: Math.round(subtotal * 0.1), percentage: 10 }
+    return { amount: 0, percentage: 0 }
+  }
+
+  const subtotal = items.reduce((sum, item) => sum + item.discountedPrice * item.quantity, 0)
+  const discount = calculateDiscount()
+  const subtotalAfterDiscount = Math.max(0, subtotal - discount.amount)
+
   const calculateDeliveryCharge = () => {
     const city = formData.city.toLowerCase().trim()
-    if (city === "rawalpindi" || city === "islamabad") {
-      return 0
-    }
+    if (city === "rawalpindi" || city === "islamabad") return 0
     return 250
   }
 
   const deliveryCharge = calculateDeliveryCharge()
-  const finalTotal = total + deliveryCharge
+  const finalTotal = subtotalAfterDiscount + deliveryCharge
 
   const WHATSAPP_NUMBER = "923010100979"
 
@@ -56,6 +69,31 @@ export default function CheckoutPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
+    try {
+      const orderData = {
+        fullName: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        address: formData.address,
+        city: formData.city,
+        items,
+        subtotal,
+        discount: discount.amount,
+        discountPercentage: discount.percentage,
+        deliveryCharge,
+        total: finalTotal,
+        paymentMethod: formData.paymentMethod,
+      }
+
+      await fetch("/api/orders/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(orderData),
+      })
+    } catch (error) {
+      console.error("[v0] Error submitting order to system:", error)
+    }
+
     const orderItems = items
       .map(
         (item) =>
@@ -63,27 +101,31 @@ export default function CheckoutPage() {
       )
       .join("%0A")
 
-    const deliveryText = deliveryCharge === 0 ? "FREE" : `PKR ${deliveryCharge}`
-    const paymentMethodText =
-      formData.paymentMethod === "cod" ? "Cash on Delivery (COD)" : "NayaPay (03010100979)"
+    const deliveryText = deliveryCharge === 0 ? "FREE" : `PKR ${deliveryCharge.toLocaleString()}`
+    const paymentMethodText = formData.paymentMethod === "cod" ? "Cash on Delivery (COD)" : "NayaPay (03010100979)"
 
-    const whatsappMessage = `*New Order Received*%0A%0A*Customer Details:*%0AName: ${
-      formData.fullName
-    }%0AEmail: ${formData.email}%0APhone: ${formData.phone}%0AAddress: ${
-      formData.address
-    }%0ACity: ${formData.city}%0A%0A*Order Items:*%0A${orderItems}%0A%0A*Subtotal: PKR ${total.toLocaleString()}*%0A*Delivery Charges: ${deliveryText}*%0A*Total Amount: PKR ${finalTotal.toLocaleString()}*%0A%0APayment Method: ${paymentMethodText}`
+    // ✅ include discount in WhatsApp message too
+    const discountLine =
+      discount.amount > 0
+        ? `%0A*Bulk Discount (${discount.percentage}%): -PKR ${discount.amount.toLocaleString()}*`
+        : ""
+
+    const whatsappMessage =
+      `*New Order Received*%0A%0A*Customer Details:*%0A` +
+      `Name: ${formData.fullName}%0AEmail: ${formData.email}%0APhone: ${formData.phone}%0A` +
+      `Address: ${formData.address}%0ACity: ${formData.city}%0A%0A` +
+      `*Order Items:*%0A${orderItems}%0A%0A` +
+      `*Subtotal: PKR ${subtotal.toLocaleString()}*` +
+      `${discountLine}%0A` +
+      `*Delivery Charges: ${deliveryText}*%0A` +
+      `*Total Amount: PKR ${finalTotal.toLocaleString()}*%0A%0A` +
+      `Payment Method: ${paymentMethodText}`
 
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`, "_blank")
 
     clearCart()
-
-    // ⬇️ YAHAN MAIN NE paymentMethod BHI URL MEIN ADD KAR DIYA HAI
     router.push(
-      `/order-confirmation?email=${encodeURIComponent(
-        formData.email,
-      )}&total=${encodeURIComponent(finalTotal.toString())}&paymentMethod=${encodeURIComponent(
-        formData.paymentMethod,
-      )}`,
+      `/order-confirmation?email=${encodeURIComponent(formData.email)}&total=${finalTotal}&paymentMethod=${formData.paymentMethod}`,
     )
   }
 
@@ -127,7 +169,7 @@ export default function CheckoutPage() {
                       value={formData.email}
                       onChange={handleChange}
                       className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-600 text-sm md:text-base"
-                      placeholder="youremail@gmail.com"
+                      placeholder="your.email@example.com"
                     />
                   </div>
 
@@ -153,7 +195,7 @@ export default function CheckoutPage() {
                       value={formData.address}
                       onChange={handleChange}
                       className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-600 text-sm md:text-base"
-                      placeholder="Address"
+                      placeholder="123 Main Street, Apt 4B"
                     />
                   </div>
 
@@ -166,7 +208,7 @@ export default function CheckoutPage() {
                       value={formData.city}
                       onChange={handleChange}
                       className="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-600 text-sm md:text-base"
-                      placeholder="Islamabad"
+                      placeholder="Karachi"
                     />
                   </div>
 
@@ -305,9 +347,7 @@ export default function CheckoutPage() {
                       />
                       <div className="flex-1 min-w-0">
                         <h3 className="text-xs md:text-sm font-semibold text-black truncate">{item.name}</h3>
-                        <p className="text-xs md:text-sm text-gray-900 font-medium">
-                          Size: {item.size || "Not specified"}
-                        </p>
+                        <p className="text-xs md:text-sm text-gray-900 font-medium">Size: {item.size || "Not specified"}</p>
                         <p className="text-xs text-gray-600">Quantity: {item.quantity}</p>
                         <p className="text-xs md:text-sm font-bold text-red-600 mt-1">
                           PKR {(item.discountedPrice * item.quantity).toLocaleString()}
@@ -320,27 +360,32 @@ export default function CheckoutPage() {
                 <div className="space-y-2 mb-3 md:mb-4 text-sm md:text-base">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Subtotal:</span>
-                    <span className="font-semibold text-black">PKR {total.toLocaleString()}</span>
+                    <span className="font-semibold text-black">PKR {subtotal.toLocaleString()}</span>
                   </div>
+
+                  {discount.amount > 0 && (
+                    <div className="flex justify-between">
+                      <span className="text-green-600">Bulk Discount ({discount.percentage}%):</span>
+                      <span className="font-semibold text-green-600">- PKR {discount.amount.toLocaleString()}</span>
+                    </div>
+                  )}
+
                   <div className="flex justify-between">
                     <span className="text-gray-600">Delivery:</span>
                     <span className={`font-semibold ${deliveryCharge === 0 ? "text-green-600" : "text-black"}`}>
                       {deliveryCharge === 0 ? "FREE" : `PKR ${deliveryCharge}`}
                     </span>
                   </div>
+
                   {formData.city && deliveryCharge === 0 && (
                     <p className="text-xs text-green-600">Free delivery in {formData.city}</p>
                   )}
-                  {formData.city && deliveryCharge > 0 && (
-                    <p className="text-xs text-gray-600">Delivery charge: PKR 250</p>
-                  )}
+                  {formData.city && deliveryCharge > 0 && <p className="text-xs text-gray-600">Delivery charge: PKR 250</p>}
                 </div>
 
                 <div className="flex justify-between items-center text-base md:text-lg border-t pt-3 md:pt-4">
                   <span className="font-bold text-black">Total:</span>
-                  <span className="font-bold text-red-600 text-lg md:text-xl">
-                    PKR {finalTotal.toLocaleString()}
-                  </span>
+                  <span className="font-bold text-red-600 text-lg md:text-xl">PKR {finalTotal.toLocaleString()}</span>
                 </div>
               </div>
             </div>

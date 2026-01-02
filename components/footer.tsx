@@ -8,7 +8,7 @@ export function Footer() {
   return (
     <footer className="bg-gradient-to-b from-slate-900 to-slate-950 text-white pt-12 md:pt-16 pb-6 md:pb-8">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-8 md:mb-12">
           {/* Brand Section */}
           <div className="sm:col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-3 md:mb-4">
@@ -25,6 +25,7 @@ export function Footer() {
             </p>
           </div>
 
+          {/* Quick Links */}
           <div>
             <h4 className="font-bold text-white mb-3 md:mb-4 text-sm md:text-base">Quick Links</h4>
             <ul className="space-y-2 text-xs md:text-sm text-gray-400">
@@ -43,9 +44,32 @@ export function Footer() {
                   Contact
                 </Link>
               </li>
+              
             </ul>
           </div>
 
+          {/* Policies */}
+          <div>
+            <h4 className="font-bold text-white mb-3 md:mb-4 text-sm md:text-base">Policies</h4>
+            <ul className="space-y-2 text-xs md:text-sm text-gray-400">
+              <li>
+                <Link href="/exchange-policy" className="hover:text-cyan-400 transition-colors">
+                  Exchange Policy
+                </Link>
+              </li>
+              <li>
+                <span className="text-gray-500">7 Days Exchange</span>
+              </li>
+              <li>
+                <span className="text-green-400">15% OFF on 4+ Products</span>
+              </li>
+              <li>
+                <span className="text-green-400">10% OFF on 3 Products</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Connect With Us */}
           <div>
             <h4 className="font-bold text-white mb-3 md:mb-4 text-sm md:text-base">Connect With Us</h4>
             <div className="flex gap-3 md:gap-4">

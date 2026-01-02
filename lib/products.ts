@@ -20,7 +20,6 @@ export const products: Product[] = [
     image: "/images/vagabond-new-shirt.png",
     colors: ["#000000"],
     sizes: ["S", "M", "L", "XL"],
-    soldOut: true,
   },
   {
     id: "shirt-2",
@@ -31,7 +30,6 @@ export const products: Product[] = [
     image: "/images/ferrari-oversized-shirt.png",
     colors: ["#000000", "#DC143C"],
     sizes: ["S", "M", "L", "XL"],
-    soldOut: true,
   },
   {
     id: "shirt-3",
@@ -42,7 +40,6 @@ export const products: Product[] = [
     image: "/images/san-andreas-oversized-shirt.png",
     colors: ["#000000"],
     sizes: ["S", "M", "L", "XL"],
-        soldOut: true,
 
   },
   {
@@ -54,6 +51,8 @@ export const products: Product[] = [
     image: "/images/porsche-911-legacy-shirt.png",
     colors: ["#000000"],
     sizes: ["S", "M", "L", "XL"],
+        soldOut: true,
+
   },
   {
     id: "shirt-5",
@@ -64,7 +63,6 @@ export const products: Product[] = [
     image: "/images/sharingan-anime-shirt.png",
     colors: ["#000000", "#8B0000"],
     sizes: ["S", "M", "L", "XL"],
-    soldOut: true,
   },
   {
     id: "shirt-6",
@@ -75,6 +73,8 @@ export const products: Product[] = [
     image: "/images/mandalorian-olive-shirt.png",
     colors: ["#556B2F"],
     sizes: ["S", "M", "L", "XL"],
+    soldOut: true,
+
   },
   {
     id: "shirt-8",
@@ -85,7 +85,6 @@ export const products: Product[] = [
     image: "/images/graffiti-oversized-shirt.png",
     colors: ["#FFFFFF"],
     sizes: ["S", "M", "L", "XL"],
-    soldOut: true,
   },
   {
     id: "shirt-9",
@@ -106,7 +105,8 @@ export const products: Product[] = [
     image: "/images/porsche-gt3-hoodie.png",
     colors: ["#FFFFFF"],
     sizes: ["S", "M", "L", "XL"],
-    soldOut: true,
+        soldOut: true,
+
   },
   {
     id: "hoodie-2",
@@ -117,7 +117,6 @@ export const products: Product[] = [
     image: "/images/batman-comic-hoodie-new.png",
     colors: ["#FFFFFF"],
     sizes: ["S", "M", "L", "XL"],
-    soldOut: true,
   },
   {
     id: "hoodie-3",
@@ -128,7 +127,6 @@ export const products: Product[] = [
     image: "/images/toji-fushiguro-hoodie.png",
     colors: ["#000000"],
     sizes: ["S", "M", "L", "XL"],
-    soldOut: true,
   },
   {
     id: "hoodie-4",
@@ -139,6 +137,5 @@ export const products: Product[] = [
     image: "/images/death-note-hoodie.png",
     colors: ["#000000"],
     sizes: ["S", "M", "L", "XL"],
-    soldOut: true,
   },
 ]

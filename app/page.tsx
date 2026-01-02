@@ -2,15 +2,14 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import Image from "next/image"
-import Link from "next/link"
-import { Truck, Shield, RefreshCw } from "lucide-react"
-
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { ProductCard } from "@/components/product-card"
-import { products, type Product } from "@/lib/products"
+import { products } from "@/lib/products"
 import { useCart } from "@/components/cart-context"
+import Image from "next/image"
+import Link from "next/link"
+import { Truck, Shield, RefreshCw } from "lucide-react"
 
 export default function Home() {
   const router = useRouter()
@@ -18,32 +17,26 @@ export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all")
   const [searchQuery, setSearchQuery] = useState<string>("")
 
-  const handleAddToCart = (product: Product, quantity = 1, size: string) => {
-    // 🔴 soldOut product ko cart me mat dalo
-    if (product.soldOut) return
-
+  const handleAddToCart = (product: any, quantity = 1, size: string) => {
     const cartItem = {
       productId: product.id,
       name: product.name,
       image: product.image,
       discountedPrice: product.discountedPrice,
-      quantity,
-      size,
+      quantity: quantity,
+      size: size,
     }
     addItem(cartItem)
   }
 
-  const handleBuyNow = (product: Product, quantity = 1, size: string) => {
-    // 🔴 soldOut product ko buy now nahi karne dena
-    if (product.soldOut) return
-
+  const handleBuyNow = (product: any, quantity = 1, size: string) => {
     const cartItem = {
       productId: product.id,
       name: product.name,
       image: product.image,
       discountedPrice: product.discountedPrice,
-      quantity,
-      size,
+      quantity: quantity,
+      size: size,
     }
     addItem(cartItem)
     router.push("/checkout")
@@ -56,15 +49,13 @@ export default function Home() {
 
   const filteredProducts = products.filter((product) => {
     const matchesCategory = selectedCategory === "all" || product.category === selectedCategory
-    const matchesSearch =
-      searchQuery === "" || product.name.toLowerCase().includes(searchQuery.toLowerCase())
+    const matchesSearch = searchQuery === "" || product.name.toLowerCase().includes(searchQuery.toLowerCase())
     return matchesCategory && matchesSearch
   })
 
   return (
     <>
       <Navbar cartCount={itemCount} onSearch={handleSearch} />
-
       {/* Mobile: Only FREE Delivery scrolls */}
       <div className="md:hidden bg-green-600 text-white py-2.5 px-4 overflow-hidden">
         <div className="animate-marquee whitespace-nowrap flex items-center gap-8 text-sm">
@@ -73,16 +64,20 @@ export default function Home() {
             <span className="font-semibold">FREE Delivery in Rawalpindi & Islamabad</span>
           </div>
           <div className="flex items-center gap-2 inline-flex">
-            <Truck className="w-4 h-4" />
-            <span className="font-semibold">FREE Delivery in Rawalpindi & Islamabad</span>
+            <span className="font-semibold">🎉 15% OFF on 4+ Products</span>
+          </div>
+          <div className="flex items-center gap-2 inline-flex">
+            <span className="font-semibold">🎉 10% OFF on 3 Products</span>
           </div>
           <div className="flex items-center gap-2 inline-flex">
             <Truck className="w-4 h-4" />
             <span className="font-semibold">FREE Delivery in Rawalpindi & Islamabad</span>
           </div>
           <div className="flex items-center gap-2 inline-flex">
-            <Truck className="w-4 h-4" />
-            <span className="font-semibold">FREE Delivery in Rawalpindi & Islamabad</span>
+            <span className="font-semibold">🎉 15% OFF on 4+ Products</span>
+          </div>
+          <div className="flex items-center gap-2 inline-flex">
+            <span className="font-semibold">🎉 10% OFF on 3 Products</span>
           </div>
         </div>
       </div>
@@ -99,8 +94,14 @@ export default function Home() {
             <span>100% Secure Payment</span>
           </div>
           <div className="flex items-center gap-2 inline-flex">
+            <span className="font-semibold"> 15% OFF on 4+ Products</span>
+          </div>
+          <div className="flex items-center gap-2 inline-flex">
+            <span className="font-semibold"> 10% OFF on 3 Products</span>
+          </div>
+          <div className="flex items-center gap-2 inline-flex">
             <RefreshCw className="w-5 h-5" />
-            <span>Easy Returns</span>
+            <span>7-Day Exchange Policy</span>
           </div>
           {/* Duplicate for seamless loop */}
           <div className="flex items-center gap-2 inline-flex">
@@ -112,21 +113,21 @@ export default function Home() {
             <span>100% Secure Payment</span>
           </div>
           <div className="flex items-center gap-2 inline-flex">
+            <span className="font-semibold">🎉 15% OFF on 4+ Products</span>
+          </div>
+          <div className="flex items-center gap-2 inline-flex">
+            <span className="font-semibold">🎉 10% OFF on 3 Products</span>
+          </div>
+          <div className="flex items-center gap-2 inline-flex">
             <RefreshCw className="w-5 h-5" />
-            <span>Easy Returns</span>
+            <span>7-Day Exchange Policy</span>
           </div>
         </div>
       </div>
 
       <main className="min-h-screen bg-gray-50">
         <section className="relative w-full h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] bg-white overflow-hidden">
-          <Image
-            src="/images/hero-hoodies.png"
-            alt="Shop Banner"
-            fill
-            className="object-cover"
-            priority
-          />
+          <Image src="/images/hero-hoodies.png" alt="Shop Banner" fill className="object-cover" priority />
           <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
             <div className="text-center text-white px-4">
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 md:mb-4 drop-shadow-lg">
@@ -156,10 +157,7 @@ export default function Home() {
                     Found: {filteredProducts.map((p) => p.name).join(", ")}
                   </span>
                 )}
-                <button
-                  onClick={() => setSearchQuery("")}
-                  className="ml-4 text-blue-600 hover:text-blue-800 underline"
-                >
+                <button onClick={() => setSearchQuery("")} className="ml-4 text-blue-600 hover:text-blue-800 underline">
                   Clear search
                 </button>
               </p>
@@ -204,9 +202,7 @@ export default function Home() {
           {/* Products Grid */}
           {filteredProducts.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-lg text-gray-600 mb-4">
-                No products found matching your search.
-              </p>
+              <p className="text-lg text-gray-600 mb-4">No products found matching your search.</p>
               <button
                 onClick={() => {
                   setSearchQuery("")
@@ -220,12 +216,7 @@ export default function Home() {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
               {filteredProducts.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  onAddToCart={handleAddToCart}
-                  onBuyNow={handleBuyNow}
-                />
+                <ProductCard key={product.id} product={product} onAddToCart={handleAddToCart} onBuyNow={handleBuyNow} />
               ))}
             </div>
           )}

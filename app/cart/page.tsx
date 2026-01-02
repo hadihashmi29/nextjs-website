@@ -13,6 +13,21 @@ export default function CartPage() {
   const router = useRouter()
   const { items, removeItem, updateQuantity, total, clearCart, itemCount } = useCart()
 
+  const calculateDiscount = () => {
+    const subtotal = items.reduce((sum, item) => sum + item.discountedPrice * item.quantity, 0)
+    const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0)
+
+    if (totalQuantity >= 4) {
+      return { amount: Math.round(subtotal * 0.15), percentage: 15 }
+    } else if (totalQuantity === 3) {
+      return { amount: Math.round(subtotal * 0.1), percentage: 10 }
+    }
+    return { amount: 0, percentage: 0 }
+  }
+
+  const discount = calculateDiscount()
+  const subtotal = items.reduce((sum, item) => sum + item.discountedPrice * item.quantity, 0)
+
   if (items.length === 0) {
     return (
       <>
@@ -129,13 +144,28 @@ export default function CartPage() {
                 <div className="space-y-2 md:space-y-3 border-b pb-3 md:pb-4 mb-3 md:mb-4">
                   <div className="flex justify-between text-sm md:text-base">
                     <span className="text-gray-600">Subtotal:</span>
-                    <span className="font-semibold text-gray-900">PKR {total.toLocaleString()}</span>
+                    <span className="font-semibold text-gray-900">PKR {subtotal.toLocaleString()}</span>
                   </div>
+                  {discount.amount > 0 && (
+                    <div className="flex justify-between text-sm md:text-base">
+                      <span className="text-green-600">Bulk Discount ({discount.percentage}%):</span>
+                      <span className="font-semibold text-green-600">- PKR {discount.amount.toLocaleString()}</span>
+                    </div>
+                  )}
                   <div className="flex justify-between text-sm md:text-base">
                     <span className="text-gray-600">Shipping:</span>
                     <span className="font-medium text-gray-900">Calculated at checkout</span>
                   </div>
                 </div>
+
+                {itemCount < 3 && (
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
+                    <p className="text-xs md:text-sm text-blue-700 font-semibold mb-1">
+                      {itemCount === 2 ? "Add 1 more item for 10% OFF!" : "Add more items for discounts!"}
+                    </p>
+                    <p className="text-xs text-blue-600">10% OFF on 3 items • 15% OFF on 4+ items</p>
+                  </div>
+                )}
 
                 <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4">
                   <p className="text-xs md:text-sm text-green-700 font-semibold mb-1">
